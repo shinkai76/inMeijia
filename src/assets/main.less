@@ -1,0 +1,93 @@
+@charset "UTF-8";
+*{
+  box-sizing: border-box;
+}
+html{
+  font-size: 50px;
+}
+body{
+  margin: 0;
+  color:#333;
+  font-family: "Helvetica Neue",Helvetica,Arial,
+    "Microsoft Yahei","Hiragino Sans GB",
+    "Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
+img{
+  border: 0;
+}
+ul,ol{
+  padding: 0;
+  margin: 0;
+}
+li{
+  list-style: none;
+}
+a{
+  color:#333;
+  text-decoration: none;
+  &:hover{
+    color:darken(@maincolor,5%);
+  }
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+.tcenter{
+  text-align: center;
+}
+.bcenter{
+  margin:0 auto;
+}
+.hidden{
+  overflow: hidden;
+}
+.bold{
+  font-weight: bold;
+}
+.block{
+  display: block;
+}
+.radius(@percent:8%){
+  border-radius:@percent;
+}
+.line(@px:1px,@color,@solid:solid){
+  border:@px @color @solid;
+}
+.ellipsis(@rows:1){
+  .hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: @rows;
+  -webkit-box-orient: vertical;
+}
+.transition(@seconds:0.3s,@ease:ease){
+  transition: all @seconds @ease;
+}
+::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track{
+  .radius(4px);
+  box-shadow: inset 0 0 1px rgba(0,0,0,0.3);
+  background-color:#f8f8f8;
+}
+::-webkit-scrollbar-thumb{
+  .radius(4px);
+  box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+  background-color: @maincolor;
+}
+::selection{
+  background: lighten(@maincolor,10%);
+  color: #fff;
+}
+////////////////////////////////////////////
+@maincolor:teal;
+@subcolor:none;
+.container{
+  min-width: 1100px;
+  .bcenter;
+}
