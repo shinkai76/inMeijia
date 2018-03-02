@@ -7,17 +7,17 @@
     <form>
       <!-- 装修类型选择 -->
       <div class="selection">
-        <select v-model="selection1" class="select">
-          <option v-for="(option1,index) in options1" :value="option1.value">
-            {{ option1.text }}
+        <select v-model="selection_type" class="select">
+          <option v-for="option in options_type" :value="option.value">
+            {{ option.text }}
           </option>
         </select>
       </div>
       <!-- 城市选择 -->
       <div class="selection">
-        <select v-model="selection2" class="select">
-          <option v-for="(option2,index) in options2" :value="option2.value">
-            {{ option2.text }}
+        <select v-model="selection_city" class="select">
+          <option v-for="option in options_city" :value="option.value">
+            {{ option.text }}
           </option>
         </select>
       </div>
@@ -39,11 +39,11 @@ import { Toast } from 'mint-ui'
 export default {
   name: 'Form',
   data: function () {
-    return{
+    return {
       community: '',
-      selection1: 1,
-      selection2: 1,
-      options1: [        // 装修类型
+      selection_type: 1,
+      selection_city: 1,
+      options_type: [
         {
           text: '毛坯房',
           value: 1
@@ -57,7 +57,7 @@ export default {
           value: 3
         }
       ],
-      options2: [      // 城市
+      options_city: [
         {
           text: '杭州',
           value: 1
@@ -75,27 +75,32 @@ export default {
   },
   methods: {
     on_submit: function () {
-      if(this.community ===''){
+      if (this.community === '') {
         this.on_empty()
-      } else {
-        const datapost = {
-          type: this.selection1,
-          city: this.selection2,
-          community: this.community
-        }
-        var me = this
-        this.$ajax({
-          method: 'post',
-          url: '',
-          data:datapost
-        }).then(function (data) {
-          me.on_success()
-        }).catch(function (err) {
-          me.on_failed()
-        })
+        return
       }
+      const datapost = {
+        type: this.selection_type,
+        city: this.selection_city,
+        community: this.community
+      }
+      let me = this
+      this.$ajax({
+        method: 'post',
+        url: '',
+        data: datapost
+      }).then(function (data) {
+        me.on_succeeded()
+      }).catch(function (err) {
+        if (err.request) {
+          console.log(err.request)
+        } else {
+          console.log('error:', err.message)
+        }
+        me.on_failed()
+      })
     },
-    on_success: function () {
+    on_succeeded: function () {
       Toast({
         message: '操作成功'
       })

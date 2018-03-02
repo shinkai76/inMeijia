@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import Header from'components/Header.vue'
-import Swipe from'components/Swipe.vue'
-import Section from'components/Section.vue'
-import Content from'components/Content.vue'
-import Form from'components/Form.vue'
+import Header from 'components/Header'
+import Swipe from 'components/Swipe'
+import Section from 'components/Section'
+import Content from 'components/Content'
+import Form from 'components/Form'
 
 export default {
   name: 'Page01',

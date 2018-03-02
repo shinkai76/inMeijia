@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name:'Section',
+  name: 'Section'
 }
 </script>
 
@@ -67,7 +67,5 @@ export default {
     bottom: 2rem;
     left: 0.9rem;
   }
-
-
 }
 </style>
